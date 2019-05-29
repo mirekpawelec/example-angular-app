@@ -1,0 +1,9 @@
+<div class="picture">
+    <img src="assets/{{ film.title | lowercase }}.jpg" width="200px">
+</div>
+<div class="describe">
+  <h1>{{ film.title }} ({{ film.year }})</h1>
+  <p>{{ film.describe }}</p>
+  <button type="button" (click)="back()">Cofnij</button>
+</div>
+

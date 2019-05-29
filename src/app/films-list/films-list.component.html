@@ -1,0 +1,7 @@
+<h3>Naciśnij na film by wyświetlić detale</h3>
+
+<div class="film" *ngFor="let film of films">
+  <a routerLink="film/{{film.id}}">
+    <img src="assets/{{ film.title | lowercase }}.jpg" width="100px">
+  </a>
+</div>
