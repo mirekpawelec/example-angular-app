@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Film } from '../models/film';
+import { Film, LightFilm } from '../models/film';
 import { FilmService } from '../film.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-films-list',
@@ -9,12 +10,19 @@ import { FilmService } from '../film.service';
 })
 export class FilmsListComponent implements OnInit {
 
-  films: Film[];
-
+  lightFilmList: LightFilm;
+  errorMessage: String = '';
+  
   constructor(private filmService: FilmService) { }
 
   ngOnInit() {
-    this.films = this.filmService.getAll();
+    this.filmService.getAll().subscribe(
+      response => this.lightFilmList = response,
+      error => {
+        this.errorMessage = "It's occurred an error while getting of data. Try again later."
+        console.log(error)
+      }
+    );
   }
 
 }

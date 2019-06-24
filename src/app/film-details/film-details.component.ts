@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { FilmService } from '../film.service';
 import { Film } from '../models/film';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-film-details',
@@ -11,12 +12,19 @@ import { Film } from '../models/film';
 })
 export class FilmDetailsComponent implements OnInit {
   film: Film;
+  domain: String = environment.apiUrl;
 
-  constructor(private filmService: FilmService, private activateRoute: ActivatedRoute, private location: Location) { }
+  constructor(
+    private filmService: FilmService, 
+    private activateRoute: ActivatedRoute, private location: Location
+  ) { }
 
   ngOnInit() {
     this.activateRoute.params.subscribe(param => {
-      this.film = this.filmService.getById(param.id)
+      this.filmService.getById(param.id).subscribe(
+        response => this.film = response,
+        error => console.log(error) 
+      )
     });
   }
 

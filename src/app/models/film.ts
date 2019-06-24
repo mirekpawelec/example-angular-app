@@ -1,6 +1,12 @@
 export interface Film {
     id?: Number;
     title: String;
-    year?: Number;
-    describe?: String;
+    description?: String;
+    relaseDate?: Number;
+    poster: String
+}
+
+export interface LightFilm {
+    id: String,
+    poster: String
 }

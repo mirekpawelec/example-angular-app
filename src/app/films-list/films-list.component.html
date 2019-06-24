@@ -1,7 +1,11 @@
-<h3>Naciśnij na film by wyświetlić detale</h3>
-
-<div class="film" *ngFor="let film of films">
-  <a routerLink="film/{{film.id}}">
-    <img src="assets/{{ film.title | lowercase }}.jpg" width="100px">
-  </a>
+<div *ngIf="lightFilmList else noData">
+  <h3>Naciśnij na film by wyświetlić detale</h3>
+  <div class="film" *ngFor="let lightFilm of lightFilmList">
+    <a routerLink="film/{{ lightFilm.id }}">
+      <img src="{{ lightFilm.poster }}" width="100px">
+    </a>
+  </div>
 </div>
+<ng-template #noData>
+  {{errorMessage}}
+</ng-template>

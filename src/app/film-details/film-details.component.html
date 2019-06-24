@@ -1,9 +1,13 @@
-<div class="picture">
-    <img src="assets/{{ film.title | lowercase }}.jpg" width="200px">
-</div>
-<div class="describe">
-  <h1>{{ film.title }} ({{ film.year }})</h1>
-  <p>{{ film.describe }}</p>
-  <button type="button" (click)="back()">Cofnij</button>
-</div>
-
+<div *ngIf="film; else loading">
+  <div class="picture">
+      <img src="{{ domain + film.poster }}" width="200px">
+  </div>
+  <div class="describe">
+    <h1>{{ film.title }} ({{ film.relaseDate }})</h1>
+    <p>{{ film.description }}</p>
+    <button type="button" (click)="back()">Cofnij</button>
+  </div>
+</div> 
+<ng-template #loading>
+  Ładowanie...
+</ng-template>
